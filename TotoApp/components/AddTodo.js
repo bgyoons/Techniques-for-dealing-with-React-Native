@@ -8,7 +8,7 @@ const AddTodo = () => {
 const styles = StyleSheet.create({
   block: {
     height: 64,
-    backgroundColor: 'red',
+    backgroundColor: '#98EAB7',
   },
 });
 
