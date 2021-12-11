@@ -10,10 +10,11 @@ import {
   Keyboard,
 } from 'react-native';
 
-const AddTodo = () => {
+const AddTodo = ({onInsert}) => {
   const [text, setText] = useState('');
 
   const onPress = () => {
+    onInsert(text);
     setText('');
     Keyboard.dismiss();
   };
@@ -72,7 +73,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     height: 64,
     paddingHorizontal: 16,
-    color: '#bdbdbd',
+    borderColor: '#e0e0e0',
     borderTopWidth: 1,
     borderBottomWidth: 1,
     justifyContent: 'center',
