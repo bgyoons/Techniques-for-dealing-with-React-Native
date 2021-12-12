@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   KeyboardAvoidingView,
   Platform,
@@ -10,14 +10,26 @@ import {SafeAreaProvider, SafeAreaView} from 'react-native-safe-area-context';
 import AddTodo from './components/AddTodo';
 import Empty from './components/Empty';
 import TodoList from './components/TodoList';
+import todosStorage from './storages/todosStorages';
 
 function App() {
   const today = new Date();
+
   const [todos, setTodos] = useState([
     {id: 1, text: '이것저것 하기', done: true},
     {id: 2, text: '이것하기', done: false},
     {id: 3, text: '저것하기', done: false},
   ]);
+
+  // 불러오기
+  useEffect(() => {
+    todosStorage.get().then(setTodos).catch(console.error);
+  }, []);
+
+  // 저장
+  useEffect(() => {
+    todosStorage.set(todos).catch(console.error);
+  }, [todos]);
 
   const onInsert = text => {
     const nextId =
