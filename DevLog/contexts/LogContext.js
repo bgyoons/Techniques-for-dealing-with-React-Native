@@ -1,5 +1,14 @@
-import {createContext} from 'react';
+import React, {createContext, useState} from 'react';
 
 const LogContext = createContext('hello world');
+
+export function LogContextProvider({children}) {
+  const [text, setText] = useState('');
+  return (
+    <LogContext.Provider value={{text, setText}}>
+      {children}
+    </LogContext.Provider>
+  );
+}
 
 export default LogContext;
